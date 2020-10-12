@@ -11,7 +11,9 @@ buildscript {
     def getVersionName = {
         return new Date().format('yy.MM.dd')
     }
+    apply from: "$rootDir/deps.gradle"
 
+    dagger_version = "2.20"
     ext.version_name = getVersionName()
     ext.version_code = getVersionCode()
     repositories {

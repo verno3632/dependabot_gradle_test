@@ -12,7 +12,6 @@ buildscript {
         return new Date().format('yy.MM.dd')
     }
 
-    apply from: "$rootDir/dependencies.gradle"
     ext.version_name = getVersionName()
     ext.version_code = getVersionCode()
     repositories {

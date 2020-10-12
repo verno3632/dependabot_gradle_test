@@ -3,5 +3,5 @@ ext {
 }
 
 deps = [
-  "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
+  ktlint: "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
 ]

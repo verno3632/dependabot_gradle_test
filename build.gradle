@@ -1,0 +1,29 @@
+buildscript {
+
+    apply from: "$rootDir/dependencies.gradle"
+
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.2.0'
+        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.2.2'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.33.0'
+        classpath "de.mannodermaus.gradle.plugins:android-junit5:1.6.2.0"
+
+        // https://github.com/JLLeitschuh/ktlint-gradle
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
+
+        https://github.com/jmatsu/license-list-plugin
+        classpath "io.github.jmatsu:license-list-gradle:0.5.0"
+
+        classpath "org.koin:koin-gradle-plugin:$koinVersion"
+    }
+}

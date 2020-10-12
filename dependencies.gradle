@@ -8,6 +8,7 @@ def dagger_version = '2.20'
 versions.bytebuddy = '1.9.7'
 versions.junitJupiter = '5.1.1'
 
+ext.dagger = "com.google.dagger:dagger-compiler:$dagger_version"
 
 libraries.junit4 = 'junit:junit:4.12'
 libraries.junitJupiterApi = "org.junit.jupiter:junit-jupiter-api:${versions.junitJupiter}"

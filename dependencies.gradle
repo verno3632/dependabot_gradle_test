@@ -1,0 +1,7 @@
+ext {
+  deps = [:]
+}
+
+deps = [
+  "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
+]

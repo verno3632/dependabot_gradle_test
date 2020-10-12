@@ -8,6 +8,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'com.hiya.jacoco-android'
 
+apply from: './dependencies.gradle'
+
 jacoco {
     toolVersion = "0.8.4"
 }

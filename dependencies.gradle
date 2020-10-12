@@ -2,6 +2,8 @@ ext {
   deps = [:]
 }
 
-deps = [
-  ktlint: "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
-]
+def versions = [:]
+
+versions.ktlint = '9.2.1'
+
+deps.ktlint = "org.jlleitschuh.gradle:ktlint-gradle:{versions.ktlint}"

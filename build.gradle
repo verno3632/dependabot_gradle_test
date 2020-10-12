@@ -1,67 +1,59 @@
-apply plugin: 'com.android.application'
-
-apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
-
-apply plugin: 'kotlin-kapt'
-
-apply plugin: 'com.hiya.jacoco-android'
-
-jacoco {
-    toolVersion = "0.8.4"
-}
-
-jacocoAndroidUnitTestReport {
-    // uncomment to see the report locally on html format
-    // html.enabled true
-    xml.enabled true
-}
-
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-}
-
-android {
-    compileSdkVersion 29
-    defaultConfig {
-        applicationId "org.mercuriete.musiciantools"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode project.version_code
-        versionName project.version_name
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+buildscript {
+    def getVersionCode = {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-list', '--count', 'HEAD'
+            standardOutput = stdout
+        }
+        return stdout.toString().trim().toInteger()
     }
-    buildTypes {
-        debug {
-            testCoverageEnabled true
+
+    def getVersionName = {
+        return new Date().format('yy.MM.dd')
+    }
+
+    ext.kotlin_version = '1.3.72'
+    ext.dagger_version = '2.20'
+    ext.version_name = getVersionName()
+    ext.version_code = getVersionCode()
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
         }
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0"
+        classpath "com.hiya:jacoco-android:0.2"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
     }
 }
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.2.0'
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
-    implementation 'android.arch.navigation:navigation-ui:1.0.0'
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test:core:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
 
-    def daggerVersion = "2.20"
-    implementation "com.google.dagger:dagger:2.20"
-    implementation "com.google.dagger:dagger-android:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    kapt "com.google.dagger:dagger-android-support:$dagger_version"
-    kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+apply plugin: "org.sonarqube"
+
+//sonar configuration
+sonarqube {
+    properties {
+        property "sonar.projectVersion", project.version_name
+        property "sonar.sourceEncoding", "UTF-8"
+
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/jacoco/jacoco.xml"
+        property "sonar.junit.reportsPath", "build/test-results/testDebugUnitTest"
+    }
 }

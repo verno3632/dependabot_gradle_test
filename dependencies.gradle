@@ -1,4 +1,4 @@
 def versions = [:]
 
-ext.dagger_version = '2.20'
+dagger_version = '2.20'
 def dagger_version = '2.20'

@@ -6,4 +6,4 @@ def versions = [:]
 
 versions.ktlint = '9.2.1'
 
-deps.ktlint = "org.jlleitschuh.gradle:ktlint-gradle:{versions.ktlint}"
+deps.ktlint = "org.jlleitschuh.gradle:ktlint-gradle:${versions.ktlint}"

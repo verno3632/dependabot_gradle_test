@@ -6,7 +6,7 @@ require 'dependabot/source'
 target_repo_name = 'verno3632/dependabot_gradle_test'
 source = Dependabot::Source.new(provider: 'github', repo: target_repo_name)
 
-client = Octokit::Client.new access_token: "68b22bc8e2df0b9227706391212b2ed08601d035"
+client = Octokit::Client.new
 fetcher_class = Dependabot::Gradle::FileFetcher
 filenames = client.contents('verno3632/dependabot_gradle_test').map(&:name)
 

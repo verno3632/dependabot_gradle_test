@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: 'com.hiya.jacoco-android'
-apply from: ".rootDir/dependencies.gradle"
+apply from: "$rootDir/dependencies.gradle"
 
 jacoco {
     toolVersion = "0.8.4"

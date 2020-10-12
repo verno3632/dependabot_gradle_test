@@ -49,5 +49,5 @@ dependencies {
     implementation "com.google.dagger:dagger-android:${ext.dagger_version}"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagge_version"
-    kapt ext.dagger
+    compile libraries.bytebudd
 }

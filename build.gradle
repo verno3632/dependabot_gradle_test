@@ -13,7 +13,7 @@ buildscript {
     }
     apply from: "$rootDir/dependencies.gradle"
 
-    dagger_version = "2.20"
+    dagger_version = "2.29.1"
     ext.version_name = getVersionName()
     ext.version_code = getVersionCode()
     repositories {
